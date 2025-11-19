@@ -62,7 +62,7 @@ const Dashboard = () => {
           <div key={show._id} className='w-55 rounded-lg overflow-hidden h-full pb-3 bg-primary/10 border border-primary/20 hover:-translate-y-1 transition duration-300'>
             <img src={show.movie.poster_path} alt="" className='h-60 w-full object-cover' />
             <p className='font-medium p-2 truncate'>{show.movie.title}</p>
-            <div className='flex items-center justify-betnween px-2'>
+            <div className='flex items-center justify-between px-2'>
               <p className='text-lg font-medium'>{currency} {show.showPrice}</p>
               <p className='flex items-center gap-1 text-sm text-gray-400 mt-1 pr-1'>
                 <StarIcon className='w-4 h-4 text-primary fill-primary' />
