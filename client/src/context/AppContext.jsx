@@ -1,4 +1,4 @@
-import { createContext } from "react";
+import { createContext, useContext } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { useAuth, useUser } from "@clerk/clerk-react";
@@ -16,6 +16,8 @@ export const AppProvider = ({ children }) => {
   const [shows, setShows] = useState([])
   const [favoriteMovies, setFavoriteMovies] = useState([])
 
+  const image_base_url = import.meta.env.VITE_TMDB_IMAGE_BASE_URL;
+
   const {user} = useUser()
   const {getToken} = useAuth()
   const location = useLocation()
@@ -27,8 +29,8 @@ export const AppProvider = ({ children }) => {
       setIsAdmin(data.isAdmin)
 
       if(!data.isAdmin && location.pathname.startsWith('/admin')) {
-        toast.error('You are not authorized to access admin dashboard')
         navigate('/')
+        toast.error('You are not authorized to access admin dashboard')
       }
     } catch (error) {
       console.error(error)
@@ -77,7 +79,7 @@ export const AppProvider = ({ children }) => {
     axios,
     fetchIsAdmin,
     user, getToken, navigate, isAdmin, shows,
-    favoriteMovies, fetchFavoriteMovies
+    favoriteMovies, fetchFavoriteMovies, image_base_url
   }
 
   return (
@@ -87,4 +89,4 @@ export const AppProvider = ({ children }) => {
   )
 }
 
-export const useAppContext = ()=> useInRouterContext(AppContext)
+export const useAppContext = ()=> useContext(AppContext)
