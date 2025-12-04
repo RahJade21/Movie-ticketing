@@ -17,7 +17,7 @@ const port = 3000;
 await connectDB();
 
 // Stripe webhooks route
-app.use('/api/stripe', express.raw({type: 'application/json'}), stripeWebhooks)
+app.post('/api/stripe', express.raw({type: 'application/json'}), stripeWebhooks)
 
 // IMPORTANT: Skip Express JSON parsing for Inngest webhook route
 // app.use((req, res, next) => {
